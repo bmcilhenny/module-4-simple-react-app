@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import StreamFeed from './containers/StreamFeed';
-import NewStreamy from './components/NewStreamy';
+import NewStreamy from './containers/NewStreamy';
 
 
 class App extends Component {
@@ -45,12 +45,14 @@ class App extends Component {
         title: '',
         time: '',
         description: ''
-      }
+      },
+      modalActive: false,
     })
   }
 
   handleNewStreamy = (e) => {
     e.preventDefault();
+    debugger;
     fetch('http://localhost:3000/api/v1/streams', {
       method: 'post',
       headers: {
@@ -86,12 +88,27 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Philadelphia_Eagles_logo.svg/320px-Philadelphia_Eagles_logo.svg.png" className="App-logo" alt="logo" />
-          <h1 className="App-title">Streamy</h1>
+          <img src="https://imgur.com/aSMEBps.png" className="App-logo" alt="logo" />
+          <h1 className="App-title">Me.tv</h1>
+             <a href="https://github.com/bmcilhenny">
+              <button className="ui circular purple icon button">
+                <i className="github icon"></i>
+              </button>
+            </a>
+            <a href="https://www.linkedin.com/in/brendan-mcilhenny/">
+              <button className="ui circular linkedin icon button">
+                <i className="linkedin icon"></i>
+              </button>
+            </a>
+            <a href="https://medium.com/@bmcilhen">
+              <button className="ui circular medium plus icon button">
+                <i className="medium plus icon"></i>
+              </button>
+            </a>
         </header>
         <p className="App-header">
-          <code>Building My React.js CRUD skills/celebrating an Eagles playoff win</code>
-          <p className="italic">To create a video make sure you are using a Youtube sharable link. Go to the youtube video, click share and use that link.</p>
+          <code>My First Attempt at a React.js CRUD app/celebrating an Eagles playoff win</code>
+          <p className="italic">To submit a Streamy, make sure you are using a Youtube sharable link. Go to the youtube video, click share and use that link.</p>
         </p>
         <NewStreamy handleNewStreamy={this.handleNewStreamy} handleNewStreamChange={this.handleNewStreamChange} newStream={this.state.newStream}/>
         <StreamFeed streams={this.state.streams} handleDelete={this.handleDelete} handleNewStreamChange={this.handleNewStreamChange}/>
